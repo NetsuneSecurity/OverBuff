@@ -8,15 +8,20 @@ max_buffer = 10000
 increment = 200
 counter = 100
 
-ip = '192.168.0.177'
-port = 9999
-
-s = so.socket(so.AF_INET, so.SOCK_STREAM)
+class Connection:
+    def __init__(self, str ip, int port):
+        self.ip = ip
+        self.port = port
+    
+    def connect(self):
+        try:
+            s = so.socket(so.AF_INET, so.SOCK_STREAM)
+            s.connect((self.ip, self.port))
+            return s
+        except:
+            
 
 while True:
     try:
         print("[+] Fuzzing with %s bytes" % len(buffer))
-        s.connect((ip, port))
-    except:
-        print("[!] connection refused, check debugger")
-        sys(exit)
+        
