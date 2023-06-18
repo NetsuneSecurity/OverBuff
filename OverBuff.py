@@ -34,7 +34,7 @@ s = socketCreate()
 
 while len(buffer) < max_buffer:
     try:
-        socketConnect(ip, port)
+        socketConnect(s, ip, port)
         s.send(('TRUN /.:/' + buffer))
         s.close()
         sleep(1)
